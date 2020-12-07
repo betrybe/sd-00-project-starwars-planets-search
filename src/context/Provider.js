@@ -18,8 +18,7 @@ function Provider({ children }) {
   });
 
   const contextValue = {
-    isFetching,
-    setIsFetching,
+    isFetching, setIsFetching,
     data,
     setData,
     backupData,
@@ -40,7 +39,8 @@ function Provider({ children }) {
 }
 
 Provider.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node
+  .isRequired,
 };
 
 export default Provider;
