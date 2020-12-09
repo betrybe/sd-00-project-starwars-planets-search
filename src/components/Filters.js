@@ -37,39 +37,28 @@ function Filters() {
   }
 
   function handleClick() {
-    // console.log(filters.column);
     if (filters.comparison === 'maior que') {
-      // console.log(filters.column);
-      // console.log(data.results[0][filters.column]);
-      // console.log(data.results);
       const filtered = data.results
         .filter((result) => Number(result[filters.column]) > Number(filters.value));
-        // .filter((result) => result[filters.column] === filters.value);
       setData({
         ...data,
         results: filtered,
       });
-    // setChangedData(true);
     } else if (filters.comparison === 'menor que') {
-      // console.log(filters.column, filters.comparison, filters.value);
       const filtered = data.results
         .filter((result) => Number(result[filters.column]) < Number(filters.value));
-        // .filter((result) => result[filters.column] === filters.value);
       setData({
         ...data,
         results: filtered,
       });
-    // setChangedData(true);
     } else if (filters.comparison === 'igual a') {
-      // console.log(filters.column, filters.comparison, filters.value);
       const filtered = data.results
         .filter((result) => Number(result[filters.column]) === Number(filters.value));
-        // .filter((result) => result[filters.column] === filters.value);
       setData({
         ...data,
         results: filtered,
       });
-      // setChangedData(true);
+
     }
   }
 
@@ -99,10 +88,8 @@ function Filters() {
           ? 1
           : minusOne),
       );
-    // console.log(dados.results);
     } else if (filterOrder.sort === 'DESC') {
       dados.results.sort((a, b) => {
-        /// ///
         let one;
         if (a[filterOrder.column] === 'unknown') {
           one = minusOne;
@@ -115,33 +102,23 @@ function Filters() {
         } else {
           two = b[filterOrder.column];
         }
-        /// ///
         if (Number(one) < Number(two)) {
           return 1;
         }
         return minusOne;
-
-        // (one < two) ? 1 : minusOne;
       });
-      // console.log(filterOrder);
     }
-    setData({
-      ...data,
-      dados });
-    // console.log(data.results);
+    setData({...data, dados });
   }
 
   useEffect(() => {
     const dados = data;
     const minusOne = -1;
-    // console.log(dados);
     dados.results.sort((a, b) => ((a.name > b.name) ? 1 : minusOne));
     setData({
       ...data,
       dados });
   }, []);
-
-  // console.log(filterOrder);
 
   return (
     <div>
