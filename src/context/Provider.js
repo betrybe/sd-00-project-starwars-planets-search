@@ -15,6 +15,7 @@ const myHook = {
   setChangedData: null,
   filterOrder: { column: 'name', sort: 'ASC' },
   setFilterOrder: null,
+  planetList: [],
 };
 
 function Provider({ children }) {
@@ -24,6 +25,7 @@ function Provider({ children }) {
   [myHook.changedData, myHook.setChangedData] = useState(false);
   [myHook.filters, myHook.setFilters] = useState(myHook.filters);
   [myHook.filterOrder, myHook.setFilterOrder] = useState(myHook.filterOrder);
+  [myHook.planetList, myHook.setPlanetList] = useState(myHook.planetList);
 
   return (
     <StarwarsContext.Provider value={ myHook }>
