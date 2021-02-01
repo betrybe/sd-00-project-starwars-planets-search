@@ -1,46 +1,39 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import StarWarsContext from './StarWarsContext';
+import StarwarsContext from './StarwarsContext';
+
+const myHook = {
+  isFetching: false,
+  setIsFetching: null,
+  data: null,
+  setData: null,
+  backupData: null,
+  setBackupData: null,
+  filters: { column: 'population', comparison: 'maior que', value: 0 },
+  setFilters: null,
+  changedData: false,
+  setChangedData: null,
+  filterOrder: { column: 'name', sort: 'ASC' },
+  setFilterOrder: null,
+};
 
 function Provider({ children }) {
-  const [isFetching, setIsFetching] = useState(false);
-  const [data, setData] = useState();
-  const [backupData, setBackupData] = useState();
-  const [changedData, setChangedData] = useState(false);
-  const [filters, setFilters] = useState({
-    column: 'population',
-    comparison: 'maior que',
-    value: 0,
-  });
-  const [filterOrder, setFilterOrder] = useState({
-    column: 'name',
-    sort: 'ASC',
-  });
-
-  const contextValue = {
-    isFetching, setIsFetching,
-    data,
-    setData,
-    backupData,
-    setBackupData,
-    filters,
-    setFilters,
-    changedData,
-    setChangedData,
-    filterOrder,
-    setFilterOrder,
-  };
+  [myHook.isFetching, myHook.setIsFetching] = useState(myHook.isFetching);
+  [myHook.data, myHook.setData] = useState();
+  [myHook.backupData, myHook.setBackupData] = useState();
+  [myHook.changedData, myHook.setChangedData] = useState(false);
+  [myHook.filters, myHook.setFilters] = useState(myHook.filters);
+  [myHook.filterOrder, myHook.setFilterOrder] = useState(myHook.filterOrder);
 
   return (
-    <StarWarsContext.Provider value={ contextValue }>
+    <StarwarsContext.Provider value={ myHook }>
       { children }
-    </StarWarsContext.Provider>
+    </StarwarsContext.Provider>
   );
 }
 
 Provider.propTypes = {
-  children: PropTypes.node
-  .isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Provider;
